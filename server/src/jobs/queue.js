@@ -1,17 +1,17 @@
 const { Queue } = require("bullmq");
-const redis = require("../config/redis");
+const connection = require("../config/redis");
 
 const jobQueue = new Queue("job-import-queue", {
-  connection: redis,
+  connection,
   defaultJobOptions: {
     attempts: 5,
     backoff: {
       type: "exponential",
-      delay: 3000
+      delay: 3000,
     },
     removeOnComplete: true,
-    removeOnFail: false
-  }
+    removeOnFail: false,
+  },
 });
 
 module.exports = jobQueue;
