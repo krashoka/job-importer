@@ -14,7 +14,7 @@ const FEEDS = [
   }
 ];
 
-cron.schedule("* * * * *", async () => {
+cron.schedule("0 * * * *", async () => {
   for (const feed of FEEDS) {
     const log = await ImportLog.create({
       fileName: feed.url,
